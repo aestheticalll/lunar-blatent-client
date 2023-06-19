@@ -2,6 +2,9 @@ package tactical.client.feature.module.registry;
 
 import net.minecraft.client.Minecraft;
 import tactical.client.Tactical;
+import tactical.client.bind.BindRegistry;
+import tactical.client.bind.KeyBind;
+import tactical.client.feature.Registry;
 import tactical.client.feature.trait.Feature;
 import tactical.client.feature.module.registry.annotation.Register;
 import tactical.client.feature.trait.Toggle;
@@ -20,7 +23,7 @@ public class Module implements Feature, Toggle {
     private final String key;
     private final Category category;
 
-    private boolean state;
+    private final KeyBind keyBind;
 
     public Module() {
 
@@ -35,6 +38,16 @@ public class Module implements Feature, Toggle {
 
         key = register.value();
         category = register.category();
+
+        // create bind & registry
+        keyBind = new KeyBind(key, (state) -> {
+            if (state) {
+                enable();
+            } else {
+                disable();
+            }
+        });
+        Registry.get(BindRegistry.class).register(keyBind);
     }
 
     @Override
@@ -49,17 +62,16 @@ public class Module implements Feature, Toggle {
 
     @Override
     public void setState(boolean state) {
-        this.state = state;
-        if (state) {
-            enable();
-        } else {
-            disable();
-        }
+        keyBind.setState(state);
     }
 
     @Override
     public boolean toggled() {
-        return state;
+        return keyBind.toggled();
+    }
+
+    public KeyBind keyBind() {
+        return keyBind;
     }
 
     @Override

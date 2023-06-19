@@ -6,7 +6,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import tactical.client.Tactical;
+import tactical.client.listener.event.input.EventKeyInput;
 import tactical.client.listener.event.start.EventStartMinecraft;
+
+import static org.lwjgl.input.Keyboard.*;
 
 /**
  * @author Gavin
@@ -18,6 +21,15 @@ public class MixinMinecraft {
     @Inject(method = "startGame", at = @At("RETURN"))
     public void hook$startGame(CallbackInfo info) {
         Tactical.bus().dispatch(new EventStartMinecraft());
+    }
+
+    @Inject(method = "dispatchKeypresses", at = @At("HEAD"))
+    public void hook$dispatchKeypresses(CallbackInfo info) {
+        if (!getEventKeyState()) return;
+        int keyCode = getEventKey() == KEY_NONE
+                ? getEventCharacter() + 256
+                : getEventKey();
+        Tactical.bus().dispatch(new EventKeyInput(keyCode));
     }
 
     /**

@@ -3,6 +3,7 @@ package tactical.client;
 import net.weavemc.loader.api.ModInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import tactical.client.bind.BindRegistry;
 import tactical.client.feature.Registry;
 import tactical.client.feature.module.registry.ModuleRegistry;
 import tactical.client.listener.bus.EventBus;
@@ -40,6 +41,7 @@ public class Tactical implements ModInitializer {
 
     @Subscribe
     private final Listener<EventStartMinecraft> startMinecraft = (event) -> {
+        Registry.register(new BindRegistry());
         Registry.register(new ModuleRegistry());
         logger.info("Fully initialized Tactical {}", version);
     };
