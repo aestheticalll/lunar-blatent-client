@@ -19,5 +19,5 @@ dependencies {
 }
 
 tasks.compileJava {
-    options.release.set(11)
+    options.release.set(17)
 }

@@ -15,7 +15,7 @@ public class Module implements Feature, Toggle {
     /**
      * The {@link Minecraft} game instance
      */
-    protected static final Minecraft mc = Minecraft.getMinecraft();
+    protected final Minecraft mc = Minecraft.getMinecraft();
 
     private final String key;
     private final Category category;

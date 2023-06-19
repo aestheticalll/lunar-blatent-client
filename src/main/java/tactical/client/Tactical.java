@@ -6,6 +6,9 @@ import org.apache.logging.log4j.Logger;
 import tactical.client.feature.Registry;
 import tactical.client.feature.module.registry.ModuleRegistry;
 import tactical.client.listener.bus.EventBus;
+import tactical.client.listener.bus.Listener;
+import tactical.client.listener.bus.Subscribe;
+import tactical.client.listener.event.start.EventStartMinecraft;
 
 /**
  * @author Gavin
@@ -32,9 +35,14 @@ public class Tactical implements ModInitializer {
     @Override
     public void preInit() {
         logger.info("Starting Tactical {}", version);
-
-        Registry.register(new ModuleRegistry());
+        bus.subscribe(this);
     }
+
+    @Subscribe
+    private final Listener<EventStartMinecraft> startMinecraft = (event) -> {
+        Registry.register(new ModuleRegistry());
+        logger.info("Fully initialized Tactical {}", version);
+    };
 
     public static EventBus bus() {
         return bus;

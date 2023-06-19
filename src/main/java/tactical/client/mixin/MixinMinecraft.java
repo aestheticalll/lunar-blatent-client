@@ -5,6 +5,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import tactical.client.Tactical;
+import tactical.client.listener.event.start.EventStartMinecraft;
 
 /**
  * @author Gavin
@@ -12,6 +14,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  */
 @Mixin(Minecraft.class)
 public class MixinMinecraft {
+
+    @Inject(method = "startGame", at = @At("RETURN"))
+    public void hook$startGame(CallbackInfo info) {
+        Tactical.bus().dispatch(new EventStartMinecraft());
+    }
 
     /**
      * @author Gavin
