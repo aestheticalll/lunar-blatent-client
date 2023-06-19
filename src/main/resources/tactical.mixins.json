@@ -1,0 +1,8 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "package": "tactical.client.mixin",
+  "mixins": [
+    "entity.MixinEntityPlayerSP",
+    "MixinMinecraft"
+  ]
+}

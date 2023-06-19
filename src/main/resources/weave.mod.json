@@ -1,0 +1,8 @@
+{
+  "mixinConfigs": [
+    "tactical.mixins.json"
+  ],
+  "entrypoints": [
+    "tactical.client.Tactical"
+  ]
+}
