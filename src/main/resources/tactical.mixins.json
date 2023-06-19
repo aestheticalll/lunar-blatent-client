@@ -3,6 +3,7 @@
   "package": "tactical.client.mixin",
   "mixins": [
     "entity.MixinEntityPlayerSP",
+    "network.MixinNetworkManager",
     "render.MixinEntityRenderer",
     "render.MixinGuiIngame",
     "MixinMinecraft"
