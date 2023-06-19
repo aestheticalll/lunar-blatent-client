@@ -3,9 +3,7 @@ package tactical.client.feature;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Gavin
@@ -22,7 +20,12 @@ public abstract class Registry<T> {
     /**
      * A map containing the class value and its instance
      */
-    private final Map<Class<? extends T>, T> classInstanceMap = new LinkedHashMap<>();
+    protected final Map<Class<? extends T>, T> classInstanceMap = new LinkedHashMap<>();
+
+    /**
+     * A list containing each object instance of T
+     */
+    protected final List<T> entries = new LinkedList<>();
 
     /**
      * This {@link Registry} logger
@@ -51,6 +54,7 @@ public abstract class Registry<T> {
     protected void registerEntries(T... entries) {
         for (T entry : entries) {
             classInstanceMap.put((Class<? extends T>) entry.getClass(), entry);
+            this.entries.add(entry);
         }
     }
 
@@ -62,6 +66,14 @@ public abstract class Registry<T> {
      */
     public <V extends T> V getEntry(Class<T> clazz) {
         return (V) registryMap.getOrDefault(clazz, null);
+    }
+
+    /**
+     * Gets the list of entries
+     * @return a list of T
+     */
+    public List<T> entries() {
+        return entries;
     }
 
     /**

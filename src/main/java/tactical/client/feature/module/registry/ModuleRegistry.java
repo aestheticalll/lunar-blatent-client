@@ -1,7 +1,7 @@
 package tactical.client.feature.module.registry;
 
 import tactical.client.feature.Registry;
-import tactical.client.feature.module.impl.render.HUDModule;
+import tactical.client.feature.module.impl.render.hud.HUDModule;
 
 /**
  * @author Gavin
