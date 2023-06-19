@@ -5,9 +5,15 @@ import tactical.client.Tactical;
 import tactical.client.bind.BindRegistry;
 import tactical.client.bind.KeyBind;
 import tactical.client.feature.Registry;
+import tactical.client.feature.module.setting.Setting;
 import tactical.client.feature.trait.Feature;
 import tactical.client.feature.module.registry.annotation.Register;
 import tactical.client.feature.trait.Toggle;
+
+import java.lang.reflect.Field;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * @author Gavin
@@ -22,6 +28,8 @@ public class Module implements Feature, Toggle {
 
     private final String key;
     private final Category category;
+
+    private final Map<String, Setting<?>> settingMap = new LinkedHashMap<>();
 
     private final KeyBind keyBind;
 
@@ -48,6 +56,29 @@ public class Module implements Feature, Toggle {
             }
         });
         Registry.get(BindRegistry.class).register(keyBind);
+    }
+
+    public void reflectSettings() {
+        for (Field field : getClass().getDeclaredFields()) {
+            if (Setting.class.isAssignableFrom(field.getType())) {
+                field.setAccessible(true);
+
+                try {
+                    Setting<?> setting = (Setting<?>) field.get(this);
+                    settingMap.put(setting.key(), setting);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public <T> Setting<T> get(String name) {
+        return (Setting<T>) settingMap.getOrDefault(name, null);
+    }
+
+    public Collection<Setting<?>> settings() {
+        return settingMap.values();
     }
 
     @Override

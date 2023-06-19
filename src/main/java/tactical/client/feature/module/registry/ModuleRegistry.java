@@ -22,6 +22,8 @@ public class ModuleRegistry extends Registry<Module> {
                 new ClickGUIModule(),
                 new HUDModule());
 
+        for (Module module : entries) module.reflectSettings();
+
         logger().info("Loaded {} modules",  size());
     }
 }

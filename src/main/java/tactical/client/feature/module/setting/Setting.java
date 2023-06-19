@@ -28,7 +28,7 @@ public class Setting<T> implements Feature {
 
     @Override
     public String key() {
-        return null;
+        return key;
     }
 
     public T value() {
