@@ -1,5 +1,6 @@
 package tactical.client.feature.module.gui;
 
+import tactical.client.feature.module.gui.setting.BooleanComponent;
 import tactical.client.feature.module.gui.setting.EnumComponent;
 import tactical.client.feature.module.registry.Module;
 import tactical.client.feature.module.setting.Setting;
@@ -13,8 +14,9 @@ import java.awt.*;
  */
 public class ModuleButton extends Component {
     private static final Color TOGGLED_COLOR = new Color(118, 93, 194);
+    private static final Color BG_COLOR = new Color(28, 28, 28);
 
-    private static final double PADDING = 2.0;
+    private static final double PADDING = 1.5;
 
     private final Module module;
     private boolean opened;
@@ -26,6 +28,9 @@ public class ModuleButton extends Component {
             if (setting.value() instanceof Enum<?>) {
                 components().add(new EnumComponent(
                         (Setting<Enum<?>>) setting));
+            } else if (setting.value() instanceof Boolean) {
+                components().add(new BooleanComponent(
+                        (Setting<Boolean>) setting));
             }
         }
     }
@@ -33,7 +38,7 @@ public class ModuleButton extends Component {
     @Override
     public void draw(int mouseX, int mouseY, float partialTicks) {
 
-        if (module.toggled()) Renders.rect(x(), y(), width(), height(), TOGGLED_COLOR.getRGB());
+        if (module.toggled()) Renders.rect(x(), y(), width(), super.height(), TOGGLED_COLOR.getRGB());
 
         String key = module.key();
         mc.fontRendererObj.drawStringWithShadow(key,
@@ -42,6 +47,13 @@ public class ModuleButton extends Component {
                 -1);
 
         if (opened) {
+            Renders.rect(x(), y() + super.height(), PADDING, height() - super.height(), TOGGLED_COLOR.getRGB());
+            Renders.rect(x() + PADDING,
+                    y() + super.height(),
+                    width() - (PADDING * 2),
+                    height() - super.height(),
+                    BG_COLOR.getRGB());
+
             double POS_Y = y() + super.height();
             for (Component component : components()) {
                 component.setX(x() + PADDING);

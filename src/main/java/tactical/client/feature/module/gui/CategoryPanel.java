@@ -14,7 +14,7 @@ import java.util.List;
 public class CategoryPanel extends Component {
     private static final Color BACKGROUND_COLOR = new Color(35, 35, 35);
 
-    private static final double PADDING = 2.0;
+    private static final double PADDING = 1.5;
 
     private final Category category;
     private boolean opened = true;
