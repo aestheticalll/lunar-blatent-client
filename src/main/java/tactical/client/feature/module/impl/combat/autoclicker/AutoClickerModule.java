@@ -45,6 +45,7 @@ public class AutoClickerModule extends Module {
     @Subscribe
     private final Listener<EventUpdate> update = (event) -> {
         MovingObjectPosition result = mc.objectMouseOver;
+        if (result == null) return;
 
         if (result.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK
                 || mc.thePlayer.isUsingItem()) return;
