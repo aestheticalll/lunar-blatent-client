@@ -15,7 +15,8 @@ import tactical.client.listener.event.network.EventPacket;
  */
 @Register(value = "Velocity", category = Category.COMBAT)
 public class VelocityModule extends Module {
-    private final Setting<Mode> mode = new Setting<>("Mode", Mode.BASIC);
+    private final Setting<VelocityMode> mode = new Setting<>(
+            "Mode", VelocityMode.BASIC);
     private final Setting<Double> horizontal = new Setting<>(
             "Chance", 80.0, 0.1, 1.0, 200.0);
     private final Setting<Double> vertical = new Setting<>(
@@ -43,8 +44,4 @@ public class VelocityModule extends Module {
             }
         }
     };
-
-    private enum Mode {
-        BASIC, CANCEL, WATCHDOG
-    }
 }
