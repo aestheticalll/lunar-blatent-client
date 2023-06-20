@@ -5,6 +5,7 @@ import tactical.client.feature.Registry;
 import tactical.client.feature.module.impl.render.hud.element.Element;
 import tactical.client.feature.module.registry.Module;
 import tactical.client.feature.module.registry.ModuleRegistry;
+import tactical.client.utility.render.Colors;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -15,12 +16,14 @@ import java.util.List;
  * @since 1.0.0
  */
 public class Arraylist extends Element {
+    private static final double PADDING = 2.0;
+
     @Override
     public void render(ScaledResolution resolution) {
         ModuleRegistry modules = Registry.get(ModuleRegistry.class);
         List<Module> entries = new ArrayList<>(modules.entries())
                 .stream()
-                .filter(Module::toggled)
+                .filter((module) -> module.toggled() || module.animation().factor() > 0.0)
                 // 10/10 code
                 .sorted(Comparator.comparingInt(
                         (module) -> -mc.fontRendererObj.getStringWidth(module.key())))
@@ -28,16 +31,19 @@ public class Arraylist extends Element {
 
         if (entries.isEmpty()) return;
 
-        double posY = 2.0;
-        for (Module module : entries) {
+        double posY = PADDING;
+        for (int i = 0; i < entries.size(); ++i) {
+            Module module = entries.get(i);
             String key = module.key();
+
+            double factor = module.animation().factor();
 
             mc.fontRendererObj.drawStringWithShadow(key,
                     (float) (resolution.getScaledWidth_double()
-                            - mc.fontRendererObj.getStringWidth(key) - 2.0),
-                    (float) posY, -1);
+                            - ((mc.fontRendererObj.getStringWidth(key) + PADDING) * factor)),
+                    (float) posY, Colors.rainbow(i * 250, 3.5));
 
-            posY += mc.fontRendererObj.FONT_HEIGHT + 2.0;
+            posY += (mc.fontRendererObj.FONT_HEIGHT + PADDING) * factor;
         }
     }
 }

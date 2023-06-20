@@ -8,6 +8,7 @@ import tactical.client.feature.module.impl.player.bridgeassist.BridgeAssistModul
 import tactical.client.feature.module.impl.player.doubleclicker.DoubleClickerModule;
 import tactical.client.feature.module.impl.player.stealer.StealerModule;
 import tactical.client.feature.module.impl.render.clickgui.ClickGUIModule;
+import tactical.client.feature.module.impl.render.esp.ESPModule;
 import tactical.client.feature.module.impl.render.hud.HUDModule;
 
 /**
@@ -30,6 +31,7 @@ public class ModuleRegistry extends Registry<Module> {
 
                 // Render modules
                 new ClickGUIModule(),
+                new ESPModule(),
                 new HUDModule());
 
         for (Module module : entries) module.reflectSettings();

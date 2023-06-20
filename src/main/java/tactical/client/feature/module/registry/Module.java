@@ -9,6 +9,8 @@ import tactical.client.feature.module.setting.Setting;
 import tactical.client.feature.trait.Feature;
 import tactical.client.feature.module.registry.annotation.Register;
 import tactical.client.feature.trait.Toggle;
+import tactical.client.utility.render.animation.Animation;
+import tactical.client.utility.render.animation.Easing;
 
 import java.lang.reflect.Field;
 import java.util.Collection;
@@ -30,8 +32,10 @@ public class Module implements Feature, Toggle {
     private final Category category;
 
     private final Map<String, Setting<?>> settingMap = new LinkedHashMap<>();
-
     private final KeyBind keyBind;
+
+    private final Animation animation = new Animation(
+            Easing.CUBIC_IN_OUT, 250.0, false);
 
     public Module() {
 
@@ -84,11 +88,13 @@ public class Module implements Feature, Toggle {
     @Override
     public void enable() {
         Tactical.bus().subscribe(this);
+        animation.setState(true);
     }
 
     @Override
     public void disable() {
         Tactical.bus().unsubscribe(this);
+        animation.setState(false);
     }
 
     @Override
@@ -103,6 +109,10 @@ public class Module implements Feature, Toggle {
 
     public KeyBind keyBind() {
         return keyBind;
+    }
+
+    public Animation animation() {
+        return animation;
     }
 
     @Override
