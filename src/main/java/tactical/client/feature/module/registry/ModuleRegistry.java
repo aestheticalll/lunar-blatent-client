@@ -1,6 +1,7 @@
 package tactical.client.feature.module.registry;
 
 import tactical.client.feature.Registry;
+import tactical.client.feature.module.impl.combat.autoclicker.AutoClickerModule;
 import tactical.client.feature.module.impl.combat.reach.ReachModule;
 import tactical.client.feature.module.impl.combat.velocity.VelocityModule;
 import tactical.client.feature.module.impl.combat.wtap.WTapModule;
@@ -20,6 +21,7 @@ public class ModuleRegistry extends Registry<Module> {
     protected void init() {
         registerEntries(
                 // Combat modules
+                new AutoClickerModule(),
                 new ReachModule(),
                 new VelocityModule(),
                 new WTapModule(),

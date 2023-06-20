@@ -38,7 +38,7 @@ public class EnumComponent extends Component {
             int ordinal = setting.value().ordinal();
             if (button == 0) {
                 ordinal += 1;
-                if (constants.length > ordinal) ordinal = 0;
+                if (constants.length >= ordinal) ordinal = 0;
             } else if (button == 1) {
                 ordinal -= 1;
                 if (ordinal < 0) ordinal = constants.length - 1;

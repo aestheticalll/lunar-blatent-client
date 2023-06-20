@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import tactical.client.Tactical;
+import tactical.client.listener.event.input.EventClickMouse;
 import tactical.client.listener.event.input.EventKeyInput;
 import tactical.client.listener.event.start.EventStartMinecraft;
 
@@ -30,6 +31,11 @@ public class MixinMinecraft {
                 ? getEventCharacter() + 256
                 : getEventKey();
         Tactical.bus().dispatch(new EventKeyInput(keyCode));
+    }
+
+    @Inject(method = "clickMouse", at = @At("HEAD"), cancellable = true)
+    public void hook$clickMouse(CallbackInfo info) {
+        if (Tactical.bus().dispatch(new EventClickMouse())) info.cancel();
     }
 
     /**
