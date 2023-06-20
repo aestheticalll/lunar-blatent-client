@@ -11,8 +11,11 @@ import tactical.client.listener.bus.Listener;
 import tactical.client.listener.bus.Subscribe;
 import tactical.client.listener.event.render.EventRender2D;
 import tactical.client.listener.event.render.EventRender3D;
+import tactical.client.utility.chat.Printer;
 import tactical.client.utility.render.Renders;
 
+import java.awt.*;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -41,8 +44,8 @@ public class ESPModule extends Module {
                     || player.isDead) continue;
 
             int color = 0xFFFFFFFF;
-            if (player.getTeam() != null) color = teamColor(
-                    player.getTeam().getRegisteredName());
+            if (player.getTeam() != null) color = 0xFF000000 | teamColor(
+                    player.getDisplayName().getFormattedText());
 
             float[][] projection = projectionCoordinates.get(id);
             if (projection == null) continue;
