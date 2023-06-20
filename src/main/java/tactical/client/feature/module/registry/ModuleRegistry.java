@@ -5,6 +5,7 @@ import tactical.client.feature.module.impl.combat.reach.ReachModule;
 import tactical.client.feature.module.impl.combat.velocity.VelocityModule;
 import tactical.client.feature.module.impl.combat.wtap.WTapModule;
 import tactical.client.feature.module.impl.player.bridgeassist.BridgeAssistModule;
+import tactical.client.feature.module.impl.player.stealer.StealerModule;
 import tactical.client.feature.module.impl.render.clickgui.ClickGUIModule;
 import tactical.client.feature.module.impl.render.hud.HUDModule;
 
@@ -23,6 +24,7 @@ public class ModuleRegistry extends Registry<Module> {
 
                 // Player modules
                 new BridgeAssistModule(),
+                new StealerModule(),
 
                 // Render modules
                 new ClickGUIModule(),
