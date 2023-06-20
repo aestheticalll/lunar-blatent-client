@@ -3,6 +3,8 @@ package tactical.client.feature.module.registry;
 import tactical.client.feature.Registry;
 import tactical.client.feature.module.impl.combat.reach.ReachModule;
 import tactical.client.feature.module.impl.combat.velocity.VelocityModule;
+import tactical.client.feature.module.impl.combat.wtap.WTapModule;
+import tactical.client.feature.module.impl.player.bridgeassist.BridgeAssistModule;
 import tactical.client.feature.module.impl.render.clickgui.ClickGUIModule;
 import tactical.client.feature.module.impl.render.hud.HUDModule;
 
@@ -17,6 +19,10 @@ public class ModuleRegistry extends Registry<Module> {
                 // Combat modules
                 new ReachModule(),
                 new VelocityModule(),
+                new WTapModule(),
+
+                // Player modules
+                new BridgeAssistModule(),
 
                 // Render modules
                 new ClickGUIModule(),

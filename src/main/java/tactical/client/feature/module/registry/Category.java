@@ -5,5 +5,5 @@ package tactical.client.feature.module.registry;
  * @since 1.0.0
  */
 public enum Category {
-    COMBAT, RENDER
+    COMBAT, PLAYER, RENDER
 }
