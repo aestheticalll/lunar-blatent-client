@@ -13,6 +13,7 @@ import tactical.client.feature.module.setting.custom.Range;
 import tactical.client.listener.bus.Listener;
 import tactical.client.listener.bus.Subscribe;
 import tactical.client.listener.event.player.EventUpdate;
+import tactical.client.utility.chat.Printer;
 import tactical.client.utility.math.MathUtils;
 import tactical.client.utility.math.Timer;
 
@@ -30,7 +31,7 @@ public class StealerModule extends Module {
 
     private final Setting<Range<Double>> delay = new Setting<>(
             "StealDelay",
-            new Range<>(150.0, 250.0, 0.1, 0.0, 1000.0));
+            new Range<>(250.0, 400.0, 0.1, 0.0, 1000.0));
     private final Setting<Boolean> noJunk = new Setting<>("NoJunk", true);
     private final Setting<Boolean> nameCheck = new Setting<>("NameCheck", true);
     private final Setting<Boolean> autoClose = new Setting<>("AutoClose", false);
