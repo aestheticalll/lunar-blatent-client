@@ -53,4 +53,14 @@ public class PacketUtils {
         packetThreads.add(thread);
         thread.start();
     }
+
+    /**
+     * Sends a packet silently
+     * @param packet the {@link Packet}
+     */
+    public static void silent(Packet<?> packet) {
+        ((INetworkManager) mc.thePlayer.sendQueue.netManager)
+                .hookDispatchPacket(packet, null);
+    }
+
 }

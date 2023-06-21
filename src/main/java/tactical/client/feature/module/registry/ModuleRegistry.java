@@ -5,8 +5,10 @@ import tactical.client.feature.module.impl.combat.autoclicker.AutoClickerModule;
 import tactical.client.feature.module.impl.combat.reach.ReachModule;
 import tactical.client.feature.module.impl.combat.velocity.VelocityModule;
 import tactical.client.feature.module.impl.combat.wtap.WTapModule;
+import tactical.client.feature.module.impl.player.antivoid.AntiVoidModule;
 import tactical.client.feature.module.impl.player.bridgeassist.BridgeAssistModule;
 import tactical.client.feature.module.impl.player.doubleclicker.DoubleClickerModule;
+import tactical.client.feature.module.impl.player.pingspoof.PingSpoofModule;
 import tactical.client.feature.module.impl.player.stealer.StealerModule;
 import tactical.client.feature.module.impl.render.clickgui.ClickGUIModule;
 import tactical.client.feature.module.impl.render.esp.ESPModule;
@@ -28,8 +30,10 @@ public class ModuleRegistry extends Registry<Module> {
                 new WTapModule(),
 
                 // Player modules
+                new AntiVoidModule(),
                 new BridgeAssistModule(),
                 new DoubleClickerModule(),
+                new PingSpoofModule(),
                 new StealerModule(),
 
                 // Render modules

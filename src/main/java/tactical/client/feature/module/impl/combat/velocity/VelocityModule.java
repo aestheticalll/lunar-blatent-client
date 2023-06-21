@@ -18,9 +18,9 @@ public class VelocityModule extends Module {
     private final Setting<VelocityMode> mode = new Setting<>(
             "Mode", VelocityMode.BASIC);
     private final Setting<Double> horizontal = new Setting<>(
-            "Chance", 80.0, 0.1, 1.0, 200.0);
+            "Horizontal", 80.0, 0.1, 1.0, 200.0);
     private final Setting<Double> vertical = new Setting<>(
-            "Chance", 100.0, 0.1, 1.0, 200.0);
+            "Vertical", 100.0, 0.1, 1.0, 200.0);
     private final Setting<Double> chance = new Setting<>(
             "Chance", 80.0, 0.1, 1.0, 100.0);
 

@@ -17,7 +17,7 @@ import tactical.client.utility.math.MathUtils;
 @Register(value = "Reach", category = Category.COMBAT)
 public class ReachModule extends Module {
     private final Setting<Range<Double>> attack = new Setting<>("Attack",
-            new Range<>(3.0, 3.2, 0.01, 3.0, 6.0));
+            new Range<>(3.03, 3.4, 0.01, 3.0, 6.0));
     private final Setting<Double> chance = new Setting<>(
             "Chance", 80.0, 0.1, 1.0, 100.0);
 
