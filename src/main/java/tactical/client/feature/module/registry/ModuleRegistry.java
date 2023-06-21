@@ -1,6 +1,7 @@
 package tactical.client.feature.module.registry;
 
 import tactical.client.feature.Registry;
+import tactical.client.feature.module.impl.combat.aimassist.AimAssistModule;
 import tactical.client.feature.module.impl.combat.autoclicker.AutoClickerModule;
 import tactical.client.feature.module.impl.combat.nohitdelay.NoHitDelayModule;
 import tactical.client.feature.module.impl.combat.reach.ReachModule;
@@ -26,6 +27,7 @@ public class ModuleRegistry extends Registry<Module> {
     protected void init() {
         registerEntries(
                 // Combat modules
+                new AimAssistModule(),
                 new AutoClickerModule(),
                 new NoHitDelayModule(),
                 new ReachModule(),
