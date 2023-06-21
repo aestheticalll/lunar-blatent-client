@@ -38,9 +38,9 @@ public class BindCommand extends Command {
         int keyCode = Keyboard.getKeyIndex(args[1].toUpperCase());
 
         parsedModule.keyBind().setKeyCode(keyCode);
-        Printer.chat("Set &9"
+        Printer.chat("Set &5"
                 + parsedModule.key()
-                + "&7's key bind to &9"
+                + "&7's key bind to &5"
                 + Keyboard.getKeyName(keyCode));
     }
 
