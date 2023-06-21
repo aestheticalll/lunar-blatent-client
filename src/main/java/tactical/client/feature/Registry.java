@@ -62,10 +62,10 @@ public abstract class Registry<T> {
      * Gets an entry
      * @param clazz the class
      * @return the entry
-     * @param <V> the value of the entry
+     * @param <T> the value of the entry
      */
-    public <V extends T> V getEntry(Class<T> clazz) {
-        return (V) registryMap.getOrDefault(clazz, null);
+    public <T> T getEntry(Class<T> clazz) {
+        return (T) registryMap.getOrDefault(clazz, null);
     }
 
     /**

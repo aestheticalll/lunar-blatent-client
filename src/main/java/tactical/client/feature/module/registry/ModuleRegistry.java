@@ -11,6 +11,7 @@ import tactical.client.feature.module.impl.player.stealer.StealerModule;
 import tactical.client.feature.module.impl.render.clickgui.ClickGUIModule;
 import tactical.client.feature.module.impl.render.esp.ESPModule;
 import tactical.client.feature.module.impl.render.hud.HUDModule;
+import tactical.client.feature.module.impl.render.nametags.NameTagsModule;
 
 /**
  * @author Gavin
@@ -34,7 +35,8 @@ public class ModuleRegistry extends Registry<Module> {
                 // Render modules
                 new ClickGUIModule(),
                 new ESPModule(),
-                new HUDModule());
+                new HUDModule(),
+                new NameTagsModule());
 
         for (Module module : entries) module.reflectSettings();
 
