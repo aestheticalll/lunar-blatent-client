@@ -50,6 +50,6 @@ public class ModuleRegistry extends Registry<Module> {
 
         for (Module module : entries) module.reflectSettings();
 
-        logger().info("Loaded {} modules",  size());
+        logger().info("Loaded {} modules", size());
     }
 }

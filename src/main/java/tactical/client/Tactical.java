@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import tactical.client.bind.BindRegistry;
 import tactical.client.feature.Registry;
+import tactical.client.feature.command.registry.CommandRegistry;
 import tactical.client.feature.module.registry.ModuleRegistry;
 import tactical.client.listener.bus.EventBus;
 import tactical.client.listener.bus.Listener;
@@ -43,6 +44,7 @@ public class Tactical implements ModInitializer {
     private final Listener<EventStartMinecraft> startMinecraft = (event) -> {
         Registry.register(new BindRegistry());
         Registry.register(new ModuleRegistry());
+        Registry.register(new CommandRegistry());
         logger.info("Fully initialized Tactical {}", version);
     };
 
