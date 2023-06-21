@@ -2,12 +2,14 @@ package tactical.client.feature.module.registry;
 
 import tactical.client.feature.Registry;
 import tactical.client.feature.module.impl.combat.autoclicker.AutoClickerModule;
+import tactical.client.feature.module.impl.combat.nohitdelay.NoHitDelayModule;
 import tactical.client.feature.module.impl.combat.reach.ReachModule;
 import tactical.client.feature.module.impl.combat.velocity.VelocityModule;
 import tactical.client.feature.module.impl.combat.wtap.WTapModule;
 import tactical.client.feature.module.impl.player.antivoid.AntiVoidModule;
 import tactical.client.feature.module.impl.player.bridgeassist.BridgeAssistModule;
 import tactical.client.feature.module.impl.player.doubleclicker.DoubleClickerModule;
+import tactical.client.feature.module.impl.player.fastplace.FastPlaceModule;
 import tactical.client.feature.module.impl.player.pingspoof.PingSpoofModule;
 import tactical.client.feature.module.impl.player.stealer.StealerModule;
 import tactical.client.feature.module.impl.render.clickgui.ClickGUIModule;
@@ -25,6 +27,7 @@ public class ModuleRegistry extends Registry<Module> {
         registerEntries(
                 // Combat modules
                 new AutoClickerModule(),
+                new NoHitDelayModule(),
                 new ReachModule(),
                 new VelocityModule(),
                 new WTapModule(),
@@ -33,6 +36,7 @@ public class ModuleRegistry extends Registry<Module> {
                 new AntiVoidModule(),
                 new BridgeAssistModule(),
                 new DoubleClickerModule(),
+                new FastPlaceModule(),
                 new PingSpoofModule(),
                 new StealerModule(),
 
