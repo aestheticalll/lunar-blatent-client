@@ -1,5 +1,9 @@
 package tactical.client.utility.io;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParser;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +16,17 @@ import java.nio.file.Files;
  * @since 1.0.0
  */
 public class FileUtils {
+
+    /**
+     * The {@link JsonParser} used to parse JSON from config files
+     */
+    public static final JsonParser jsonParser = new JsonParser();
+
+    /**
+     * The {@link Gson} instance used to manage JSON
+     */
+    public static final Gson gson = new GsonBuilder()
+            .setPrettyPrinting().create();
 
     /**
      * Reads from a file

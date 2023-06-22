@@ -17,12 +17,16 @@ import tactical.client.feature.module.impl.render.clickgui.ClickGUIModule;
 import tactical.client.feature.module.impl.render.esp.ESPModule;
 import tactical.client.feature.module.impl.render.hud.HUDModule;
 import tactical.client.feature.module.impl.render.nametags.NameTagsModule;
+import tactical.client.feature.module.registry.config.ModuleConfigurations;
 
 /**
  * @author Gavin
  * @since 1.0.0
  */
 public class ModuleRegistry extends Registry<Module> {
+
+    private ModuleConfigurations moduleConfigurations;
+
     @Override
     protected void init() {
         registerEntries(
@@ -51,5 +55,16 @@ public class ModuleRegistry extends Registry<Module> {
         for (Module module : entries) module.reflectSettings();
 
         logger().info("Loaded {} modules", size());
+
+        moduleConfigurations = new ModuleConfigurations(this);
+        logger().info(moduleConfigurations.load("default"));
+    }
+
+    /**
+     * The {@link ModuleConfigurations} instance
+     * @return the {@link ModuleConfigurations} instance
+     */
+    public ModuleConfigurations moduleConfigurations() {
+        return moduleConfigurations;
     }
 }

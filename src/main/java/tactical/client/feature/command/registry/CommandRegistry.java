@@ -9,6 +9,7 @@ import tactical.client.feature.Registry;
 import tactical.client.feature.command.exception.CommandInvalidArgumentException;
 import tactical.client.feature.command.exception.CommandSyntaxException;
 import tactical.client.feature.command.impl.BindCommand;
+import tactical.client.feature.command.impl.ConfigCommand;
 import tactical.client.feature.command.registry.config.CommandPrefixConfig;
 import tactical.client.listener.bus.Listener;
 import tactical.client.listener.bus.Subscribe;
@@ -38,7 +39,9 @@ public class CommandRegistry extends Registry<Command> {
 
     @Override
     protected void init() {
-        registerEntries(new BindCommand());
+        registerEntries(
+                new BindCommand(),
+                new ConfigCommand());
 
         Configs.add(new CommandPrefixConfig(this));
         Tactical.bus().subscribe(this);
