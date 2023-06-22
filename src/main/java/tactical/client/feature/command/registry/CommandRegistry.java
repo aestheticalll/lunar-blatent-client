@@ -4,10 +4,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.network.play.client.C01PacketChatMessage;
 import tactical.client.Tactical;
+import tactical.client.config.Configs;
 import tactical.client.feature.Registry;
 import tactical.client.feature.command.exception.CommandInvalidArgumentException;
 import tactical.client.feature.command.exception.CommandSyntaxException;
 import tactical.client.feature.command.impl.BindCommand;
+import tactical.client.feature.command.registry.config.CommandPrefixConfig;
 import tactical.client.listener.bus.Listener;
 import tactical.client.listener.bus.Subscribe;
 import tactical.client.listener.event.input.EventKeyInput;
@@ -38,6 +40,7 @@ public class CommandRegistry extends Registry<Command> {
     protected void init() {
         registerEntries(new BindCommand());
 
+        Configs.add(new CommandPrefixConfig(this));
         Tactical.bus().subscribe(this);
         logger().info("Loaded {} commands", size());
     }
