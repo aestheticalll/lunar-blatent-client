@@ -28,10 +28,6 @@ public class BridgeAssistModule extends Module {
 
     private boolean sneakOverride;
 
-    public BridgeAssistModule() {
-        keyBind().setKeyCode(KEY_R);
-    }
-
     @Override
     public void disable() {
         super.disable();

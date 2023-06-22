@@ -39,10 +39,6 @@ public class StealerModule extends Module {
     private final Timer timer = new Timer();
     private double calculatedDelay = NaN;
 
-    public StealerModule() {
-        keyBind().setKeyCode(KEY_GRAVE);
-    }
-
     @Override
     public void disable() {
         super.disable();
